@@ -264,7 +264,4 @@ for iou_threshold in [0.1, 0.5]:
     plt.xlabel('False positive rate')
     plt.ylabel('True positive rate')
     plt.grid(color='grey', linestyle='--', linewidth=1)
-
-plt.show()
-# save figure
-plt.savefig('courbe roc.jpg')
+    plt.savefig('roc_curve_iou{}.jpg'.format(iou_threshold))
