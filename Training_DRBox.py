@@ -49,7 +49,7 @@ img_channels = 3  # Number of color channels of the model input images
 # The per-channel mean of the images in the dataset. Do not change this value if you're using any of the
 # pre-trained weights.
 mean_color = [123, 117, 104]
-n_classes = 1  # Number of positive classes
+n_classes = 2  # Number of positive classes
 
 
 ##################################################################################
@@ -166,12 +166,12 @@ n_classes = 1  # Number of positive classes
 ##################################################################################
 
 scales = [0.18, 0.18, 0.18, 0.18, 0.18, 0.18]  # The anchor boxes scaling factors
-aspect_ratios = [[2.4],
-                 [2.4],
-                 [2.4],
-                 [2.4],
-                 [2.4],
-                 [2.4]]  # The anchor boxes aspect ratios
+aspect_ratios = [[2, 2.5, 3, 3.5],
+                 [2, 2.5, 3, 3.5],
+                 [2, 2.5, 3, 3.5],
+                 [2, 2.5, 3, 3.5],
+                 [2, 2.5, 3, 3.5],
+                 [2, 2.5, 3, 3.5]]  # The anchor boxes aspect ratios
 
 angles = [i * np.pi / 6 for i in range(6)]  # the anchor boxes angles
 

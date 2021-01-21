@@ -201,6 +201,15 @@ class DataAugmentation:
                           self.random_patch,
                           self.resize]
 
+        self.sequence3 = [self.convert_to_3_channels,
+                          self.convert_to_uint8,
+                          self.random_horizontal_flip,
+                          self.random_vertical_flip,
+                          self.random_translate,
+                          self.random_rotate_big,
+                          self.random_rotate_small,
+                          self.resize]
+
     def __call__(self, image, labels=None):
 
         # Choose to perform data augmentation or not
@@ -208,29 +217,40 @@ class DataAugmentation:
 
         if rand == 0:
 
-            rand = np.random.choice(2)
-
-            # Choose sequence 2 with probability 0.5
+            # Choose sequence 3
             if rand == 0:
                 if not (labels is None):
-                    for transform in self.sequence1:
+                    for transform in self.sequence3:
                         image, labels = transform(image, labels)
                     return image, labels
                 else:
-                    for transform in self.sequence1:
+                    for transform in self.sequence3:
                         image = transform(image)
                     return image
 
-            # Choose sequence 2 with probability 0.5
-            elif rand == 1:
-                if not (labels is None):
-                    for transform in self.sequence2:
-                        image, labels = transform(image, labels)
-                    return image, labels
-                else:
-                    for transform in self.sequence2:
-                        image = transform(image)
-                    return image
+            # rand = np.random.choice(2)
+            #
+            # # Choose sequence 2 with probability 0.5
+            # if rand == 0:
+            #     if not (labels is None):
+            #         for transform in self.sequence1:
+            #             image, labels = transform(image, labels)
+            #         return image, labels
+            #     else:
+            #         for transform in self.sequence1:
+            #             image = transform(image)
+            #         return image
+            #
+            # # Choose sequence 2 with probability 0.5
+            # elif rand == 1:
+            #     if not (labels is None):
+            #         for transform in self.sequence2:
+            #             image, labels = transform(image, labels)
+            #         return image, labels
+            #     else:
+            #         for transform in self.sequence2:
+            #             image = transform(image)
+            #         return image
 
         # Do not perform any transformations
         else:
