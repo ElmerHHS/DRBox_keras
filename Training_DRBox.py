@@ -12,12 +12,13 @@ Author : Paul Pontisso
 '''
 
 from keras.optimizers import Adam, SGD
-from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, TerminateOnNaN, CSVLogger
+from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, TerminateOnNaN, CSVLogger, TensorBoard
 from keras import backend as K
 from math import ceil
 import numpy as np
 import os
 import warnings
+import datetime
 
 from models.keras_DRBox import drbox
 from keras_loss_function.keras_drbox_loss import DRBoxLoss
@@ -266,7 +267,7 @@ val_dataset.parse_csv(images_dir=images_dir,
 
 # Set the batch size.
 
-batch_size = 64
+batch_size = 32
 
 # Set the image transformations for pre-processing and data augmentation options.
 
@@ -351,17 +352,21 @@ csv_logger = CSVLogger(filename='drbox_training_log.csv',
 
 terminate_on_nan = TerminateOnNaN()
 
+log_dir = "/content/drive/MyDrive/DRBox/logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard = TensorBoard(log_dir=log_dir, histogram_freq=1)
+
 callbacks = [model_checkpoint,
              csv_logger,
              reduce_lr,
-             terminate_on_nan]
+             terminate_on_nan,
+             tensorboard]
 
 # 5. Train
 
 # If you're resuming a previous training, set `initial_epoch` and `final_epoch` accordingly.
 initial_epoch = 0
 final_epoch = 50
-steps_per_epoch = 25
+steps_per_epoch = 10
 
 history = model.fit_generator(generator=train_generator,
                               steps_per_epoch=steps_per_epoch,
