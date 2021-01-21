@@ -353,7 +353,7 @@ csv_logger = CSVLogger(filename='drbox_training_log.csv',
 terminate_on_nan = TerminateOnNaN()
 
 log_dir = "/content/drive/MyDrive/DRBox/logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-tensorboard = TensorBoard(log_dir=log_dir, histogram_freq=1)
+tensorboard = TensorBoard(log_dir=log_dir, histogram_freq=0)
 
 callbacks = [model_checkpoint,
              csv_logger,
