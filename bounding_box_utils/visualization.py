@@ -43,7 +43,7 @@ def visualize(image, gt_labels=None, pred_labels=None, save_path=None):
                          cy - 1 / 2 * (h * np.cos(angle) + w * np.sin(angle))
 
             current_axis.add_patch(
-                plt.Rectangle((xmin, ymin), w, h, angle=angle * 180 / np.pi, color='red', fill=False, linewidth=2))
+                plt.Rectangle((xmin, ymin), w, h, angle=angle * 180 / np.pi, color='blue', fill=False, linewidth=2))
 
     # draw predicted boxes
     if pred_labels is not None:
@@ -51,6 +51,7 @@ def visualize(image, gt_labels=None, pred_labels=None, save_path=None):
         current_axis.text(1, -10, '- Predicted boxes', size='x-large', color='red', bbox={'facecolor': 'white', 'alpha': 1.0})
 
         for box in pred_labels:
+            class_id = box[0]
             cx = box[2]
             cy = box[3]
             w = box[4]
@@ -60,8 +61,13 @@ def visualize(image, gt_labels=None, pred_labels=None, save_path=None):
             xmin, ymin = cx - 1 / 2 * (-h * np.sin(angle) + w * np.cos(angle)), \
                          cy - 1 / 2 * (h * np.cos(angle) + w * np.sin(angle))
 
+            if class_id == 1:
+                color = 'red'
+            else:
+                color = 'yellow'
+
             current_axis.add_patch(
-                plt.Rectangle((xmin, ymin), w, h, angle=angle * 180 / np.pi, color='blue', fill=False, linewidth=2))
+                plt.Rectangle((xmin, ymin), w, h, angle=angle * 180 / np.pi, color=color, fill=False, linewidth=2))
 
             label = '{:.2f}'.format(box[1])
             current_axis.text(xmin, ymin, label, size='x-small', color='white', bbox={'facecolor': 'blue', 'alpha': 1.0})
