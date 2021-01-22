@@ -61,7 +61,7 @@ parser.add_argument('-f', '--save_folder',
 
 parser.add_argument('-c', '--confidence',
                     type=float,
-                    default=0.1,
+                    default=0.5,
                     help="The confidence threshold to apply before visualizing")
 
 args = parser.parse_args()
@@ -129,7 +129,7 @@ for i in tqdm(range(val_dataset_size)):
 
     y_pred_decoded = decode_detections(y_pred,
                                        confidence_thresh=confidence,
-                                       iou_threshold=0.01,
+                                       iou_threshold=0.35,
                                        top_k=100,
                                        normalize_coords=normalize_coords,
                                        img_height=img_height,
