@@ -30,7 +30,7 @@ def visualize(image, gt_labels=None, pred_labels=None, save_path=None):
     # draw ground truth boxes
     if gt_labels is not None:
 
-        current_axis.text(1, -25, '- Ground Truth', size='x-large', color='blue', bbox={'facecolor': 'white', 'alpha': 1.0})
+        current_axis.text(1, -25, '- Ground Truth', size='x-large', color='green', bbox={'facecolor': 'white', 'alpha': 1.0})
 
         for box in gt_labels:
             cx = box[1]
@@ -43,12 +43,13 @@ def visualize(image, gt_labels=None, pred_labels=None, save_path=None):
                          cy - 1 / 2 * (h * np.cos(angle) + w * np.sin(angle))
 
             current_axis.add_patch(
-                plt.Rectangle((xmin, ymin), w, h, angle=angle * 180 / np.pi, color='blue', fill=False, linewidth=2))
+                plt.Rectangle((xmin, ymin), w, h, angle=angle * 180 / np.pi, color='green', fill=False, linewidth=2))
 
     # draw predicted boxes
     if pred_labels is not None:
 
-        current_axis.text(1, -10, '- Predicted boxes', size='x-large', color='red', bbox={'facecolor': 'white', 'alpha': 1.0})
+        current_axis.text(1, -10, '- Predicted boxes bread roll top', size='x-large', color='red', bbox={'facecolor': 'white', 'alpha': 1.0})
+        current_axis.text(50, -10, '- Predicted boxes bread roll bottom', size='x-large', color='yellow', bbox={'facecolor': 'white', 'alpha': 1.0})
 
         for box in pred_labels:
             class_id = box[0]
@@ -70,7 +71,7 @@ def visualize(image, gt_labels=None, pred_labels=None, save_path=None):
                 plt.Rectangle((xmin, ymin), w, h, angle=angle * 180 / np.pi, color=color, fill=False, linewidth=2))
 
             label = '{:.2f}'.format(box[1])
-            current_axis.text(xmin, ymin, label, size='x-small', color='white', bbox={'facecolor': 'blue', 'alpha': 1.0})
+            current_axis.text(xmin, ymin, label, size='x-small', color='black', bbox={'facecolor': color, 'alpha': 1.0})
 
     if save_path:
         plt.savefig(save_path)
