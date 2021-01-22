@@ -129,7 +129,7 @@ for i in tqdm(range(val_dataset_size)):
 
     y_pred_decoded = decode_detections(y_pred,
                                        confidence_thresh=confidence,
-                                       iou_threshold=0.35,
+                                       iou_threshold=0.2,
                                        top_k=100,
                                        normalize_coords=normalize_coords,
                                        img_height=img_height,
