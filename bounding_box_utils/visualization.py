@@ -49,7 +49,7 @@ def visualize(image, gt_labels=None, pred_labels=None, save_path=None):
     if pred_labels is not None:
 
         current_axis.text(1, -10, '- Predicted boxes bread roll top', size='x-large', color='green', bbox={'facecolor': 'white', 'alpha': 1.0})
-        current_axis.text(100, -10, '- Predicted boxes bread roll bottom', size='x-large', color='red', bbox={'facecolor': 'white', 'alpha': 1.0})
+        current_axis.text(150, -10, '- Predicted boxes bread roll bottom', size='x-large', color='red', bbox={'facecolor': 'white', 'alpha': 1.0})
 
         for box in pred_labels:
             class_id = box[0]
