@@ -174,7 +174,7 @@ aspect_ratios = [[2, 2.5, 3, 3.5],
                  [2, 2.5, 3, 3.5],
                  [2, 2.5, 3, 3.5]]  # The anchor boxes aspect ratios
 
-angles = [i * np.pi / 6 for i in range(6)]  # the anchor boxes angles
+angles = [i * np.pi / 12 for i in range(12)]  # the anchor boxes angles
 
 pos_ariou_threshold = 0.4
 neg_ariou_limit = 0.3
@@ -187,7 +187,7 @@ variances = [0.1, 0.1, 0.2, 0.2, 1]
 # learning rate
 lr = 0.0001
 # l2 regularization parameter
-l2_reg = 0
+l2_reg = 0.0005
 alpha = 1.0
 
 # Set the paths to the datasets here.
